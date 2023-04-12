@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""A pure script for identifying flower species in flower images,
+using a previously trained TensorFlow deep learning model.
+Prints out the flower class predictions.
+"""
+
+
 import argparse
 import tensorflow as tf
 import tensorflow_hub as hub
@@ -40,9 +47,6 @@ CLA_parser.add_argument(
 )
 
 arguments = CLA_parser.parse_args()
-# print(vars(arguments))
-# print(arguments.path_to_model[0])
-# print(type(arguments))
 
 
 # Loading the model:
@@ -72,6 +76,7 @@ if arguments.category_names is not None:
     with open(arguments.category_names, 'r') as f:
         class_names = json.load(f)
     classes = [class_names[k] for k in classes]
+
 
 # Print results:
 print(f'\nTop {arguments.top_k} classes & probabilities:\n')

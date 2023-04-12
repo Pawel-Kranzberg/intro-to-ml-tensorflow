@@ -4,6 +4,8 @@ import tensorflow as tf
 
 
 def process_image(input_image, image_size=224):
+    """Transform the image to suit the model's requirements.
+    """
     image = tf.cast(input_image.copy(), tf.float32)
     image = tf.image.resize(image, (image_size, image_size))
     image /= 255
@@ -12,6 +14,8 @@ def process_image(input_image, image_size=224):
     
 
 def predict(image_path, model, top_k:int):
+    """Generate the class predictions from an image.
+    """
     image = Image.open(image_path)
     image = process_image(np.asarray(image))
     image = np.expand_dims(image, axis=0)
